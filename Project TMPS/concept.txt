@@ -1,0 +1,5 @@
+Singleton - balance for game
+Builder - presets "medic","rifler",etc...
+Decorator - customize any guns
+Strategy - set game stages
+Facade - game api
