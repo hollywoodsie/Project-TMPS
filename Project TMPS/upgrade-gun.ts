@@ -1,13 +1,18 @@
-import { IGuns } from './goods';
+//Decorator
 
+import { Guns, IGuns } from './goods';
+
+interface Upgrade {
+  upgrade(scope?: string): Guns;
+}
 class Decorator implements IGuns {
   public ammo: number;
   public scope: string;
   public price: number;
   public suppressor: boolean;
-  protected object: IGuns;
+  protected object: Guns;
 
-  constructor(object: IGuns) {
+  constructor(object: Guns) {
     this.object = object;
     this.price = object.price;
     this.ammo = object.ammo;
@@ -15,17 +20,18 @@ class Decorator implements IGuns {
     this.suppressor = object.suppressor;
   }
 }
-class AddSuppressor extends Decorator {
-  public upgrade(): IGuns {
+
+class AddSuppressor extends Decorator implements Upgrade {
+  public upgrade(): Guns {
     this.object.suppressor = true;
     return this.object;
   }
 }
-class ChangeScope extends Decorator {
-  public upgrade(scope: string): IGuns {
+class ChangeScope extends Decorator implements Upgrade {
+  public upgrade(scope: string): Guns {
     this.object.scope = scope;
     return this.object;
   }
 }
 
-export { Decorator, AddSuppressor, ChangeScope };
+export { Decorator, AddSuppressor, ChangeScope, Upgrade };

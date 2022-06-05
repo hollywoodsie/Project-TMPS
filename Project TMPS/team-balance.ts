@@ -1,3 +1,5 @@
+//Singleton
+
 class Balance {
   private static _instance: Balance = new Balance();
 

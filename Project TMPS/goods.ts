@@ -1,3 +1,10 @@
+//Factory Method
+
+type Guns = Pistol | Shotgun | SniperRifle | Rifle;
+type Medicine = Bandage | FirstAidKit | MedKit;
+
+import { Users } from './users';
+
 interface Goods {
   price: number;
 }
@@ -56,23 +63,27 @@ class MedKit implements IMedicine {
 }
 
 class Creator {
-  static buy(someGood: string): Goods {
-    if (someGood === 'pistol') {
+  static buyGun(someGun: string): Guns {
+    if (someGun === 'pistol') {
       return new Pistol();
-    } else if (someGood === 'rifle') {
+    } else if (someGun === 'rifle') {
       return new Rifle();
-    } else if (someGood === 'sniper') {
+    } else if (someGun === 'sniper') {
       return new SniperRifle();
-    } else if (someGood === 'shotgun') {
+    } else if (someGun === 'shotgun') {
       return new Shotgun();
-    } else if (someGood === 'bandage') {
+    }
+    throw new Error(`'${someGun}' doesn't exist in shop!`);
+  }
+  static buyMedicine(someMed: string): Medicine {
+    if (someMed === 'bandage') {
       return new Bandage();
-    } else if (someGood === 'first-aid-kit') {
+    } else if (someMed === 'first-aid-kit') {
       return new FirstAidKit();
-    } else if (someGood === 'med-kit') {
+    } else if (someMed === 'med-kit') {
       return new MedKit();
     }
-    throw new Error(`'${someGood}' doesn't exist in shop!`);
+    throw new Error(`'${someMed}' doesn't exist in shop!`);
   }
 }
 
@@ -88,4 +99,6 @@ export {
   MedKit,
   Creator,
   IMedicine,
+  Guns,
+  Medicine,
 };

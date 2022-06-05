@@ -1,5 +1,5 @@
 Singleton - balance for game
-Builder - presets "medic","rifler",etc...
+FactoryMethod - goods
 Decorator - customize any guns
 Strategy - set game stages
 Facade - game api

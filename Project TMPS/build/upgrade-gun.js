@@ -1,4 +1,5 @@
 "use strict";
+//Decorator
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChangeScope = exports.AddSuppressor = exports.Decorator = void 0;
 class Decorator {

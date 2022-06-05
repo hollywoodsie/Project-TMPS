@@ -1,4 +1,5 @@
 "use strict";
+//Singleton
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Balance = void 0;
 class Balance {
