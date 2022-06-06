@@ -6,12 +6,11 @@ interface Upgrade {
   upgrade(scope?: string): Guns;
 }
 class Decorator implements IGuns {
-  public ammo: number;
-  public scope: string;
-  public price: number;
-  public suppressor: boolean;
   protected object: Guns;
-
+  public ammo: number;
+  public price: number;
+  public scope: string;
+  public suppressor: boolean;
   constructor(object: Guns) {
     this.object = object;
     this.price = object.price;

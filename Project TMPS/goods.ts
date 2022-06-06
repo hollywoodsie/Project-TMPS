@@ -3,8 +3,6 @@
 type Guns = Pistol | Shotgun | SniperRifle | Rifle;
 type Medicine = Bandage | FirstAidKit | MedKit;
 
-import { Users } from './users';
-
 interface Goods {
   price: number;
 }
@@ -62,8 +60,11 @@ class MedKit implements IMedicine {
   public price: number = 700;
 }
 
-class Creator {
-  static buyGun(someGun: string): Guns {
+abstract class Creator {
+  public abstract buy(product: string): any;
+}
+class GunCreator extends Creator {
+  buy(someGun: string): Guns {
     if (someGun === 'pistol') {
       return new Pistol();
     } else if (someGun === 'rifle') {
@@ -75,7 +76,9 @@ class Creator {
     }
     throw new Error(`'${someGun}' doesn't exist in shop!`);
   }
-  static buyMedicine(someMed: string): Medicine {
+}
+class MedicineCreator extends Creator {
+  buy(someMed: string): Medicine {
     if (someMed === 'bandage') {
       return new Bandage();
     } else if (someMed === 'first-aid-kit') {
@@ -101,4 +104,6 @@ export {
   IMedicine,
   Guns,
   Medicine,
+  GunCreator,
+  MedicineCreator,
 };

@@ -19,9 +19,6 @@ class PersonalInformation extends Information {
         console.log(`\n---- Personal Information ----`);
         return `It's an engine that emulates the gear mechanism in a shooter.\nThis project was prepared by Covali Roman, student of the Technical University of Moldova `;
     }
-    showDefault() {
-        return ``;
-    }
 }
 exports.PersonalInformation = PersonalInformation;
 class TechnicalInformation extends Information {

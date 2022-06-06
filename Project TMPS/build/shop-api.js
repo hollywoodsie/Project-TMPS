@@ -10,10 +10,11 @@ const users_1 = require("./users");
 class ShopAPI {
     constructor() {
         this.balance = team_balance_1.Balance.getInstance();
-        this.allUsers = [];
         this.gameStage = new gameStages_1.ShopAvailability(new gameStages_1.Init());
         this.improver = new upgrade_gun_1.AddSuppressor(new goods_1.Pistol());
         this.canBuy = this.gameStage.status;
+        this.allUsers = [];
+        this.creator = new goods_1.GunCreator();
     }
     get users() {
         return this.allUsers;
@@ -24,16 +25,18 @@ class ShopAPI {
     buySome(whatToBuy, type, user) {
         if (this.canBuy) {
             if (type === 'gun') {
-                if (goods_1.Creator.buyGun(whatToBuy).price <= this.balance.getBalance()) {
-                    user.backpack.gunsInside.push(goods_1.Creator.buyGun(whatToBuy));
-                    this.balance.removeMoney(goods_1.Creator.buyGun(whatToBuy).price);
+                this.creator = new goods_1.GunCreator();
+                if (this.creator.buy(whatToBuy).price <= this.balance.getBalance()) {
+                    user.backpack.gunsInside.push(this.creator.buy(whatToBuy));
+                    this.balance.removeMoney(this.creator.buy(whatToBuy).price);
                     console.log(`Successful bought ${whatToBuy} for ${user.nickname}. Team balance : ${this.balance.getBalance()}`);
                 }
             }
             else if (type === 'med') {
-                if (goods_1.Creator.buyMedicine(whatToBuy).price <= this.balance.getBalance()) {
-                    user.backpack.medicineInside.push(goods_1.Creator.buyMedicine(whatToBuy));
-                    this.balance.removeMoney(goods_1.Creator.buyMedicine(whatToBuy).price);
+                this.creator = new goods_1.MedicineCreator();
+                if (this.creator.buy(whatToBuy).price <= this.balance.getBalance()) {
+                    user.backpack.medicineInside.push(this.creator.buy(whatToBuy));
+                    this.balance.removeMoney(this.creator.buy(whatToBuy).price);
                     console.log(`Successful bought ${whatToBuy} for ${user.nickname}. Team balance : ${this.balance.getBalance()}`);
                 }
             }

@@ -1,7 +1,7 @@
 "use strict";
 //Factory Method
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Creator = exports.MedKit = exports.FirstAidKit = exports.Bandage = exports.SniperRifle = exports.Shotgun = exports.Rifle = exports.Pistol = void 0;
+exports.MedicineCreator = exports.GunCreator = exports.Creator = exports.MedKit = exports.FirstAidKit = exports.Bandage = exports.SniperRifle = exports.Shotgun = exports.Rifle = exports.Pistol = void 0;
 class Pistol {
     constructor() {
         this.ammo = 12;
@@ -60,7 +60,10 @@ class MedKit {
 }
 exports.MedKit = MedKit;
 class Creator {
-    static buyGun(someGun) {
+}
+exports.Creator = Creator;
+class GunCreator extends Creator {
+    buy(someGun) {
         if (someGun === 'pistol') {
             return new Pistol();
         }
@@ -75,7 +78,10 @@ class Creator {
         }
         throw new Error(`'${someGun}' doesn't exist in shop!`);
     }
-    static buyMedicine(someMed) {
+}
+exports.GunCreator = GunCreator;
+class MedicineCreator extends Creator {
+    buy(someMed) {
         if (someMed === 'bandage') {
             return new Bandage();
         }
@@ -88,4 +94,4 @@ class Creator {
         throw new Error(`'${someMed}' doesn't exist in shop!`);
     }
 }
-exports.Creator = Creator;
+exports.MedicineCreator = MedicineCreator;
